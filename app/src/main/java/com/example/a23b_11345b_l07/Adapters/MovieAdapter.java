@@ -8,6 +8,7 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.widget.AppCompatRatingBar;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.a23b_11345b_l07.Interfaces.MovieCallback;
 import com.example.a23b_11345b_l07.Models.Movie;
 import com.example.a23b_11345b_l07.R;
 import com.example.a23b_11345b_l07.Utilities.ImageLoader;
@@ -23,6 +24,12 @@ public class MovieAdapter extends RecyclerView.Adapter<MovieAdapter.MovieViewHol
 
     public MovieAdapter(ArrayList<Movie> movies) {
         this.movies = movies;
+    }
+
+    private MovieCallback movieCallback;
+
+    public void setMovieCallback(MovieCallback movieCallback) {
+        this.movieCallback = movieCallback;
     }
 
     @NonNull
@@ -79,6 +86,14 @@ public class MovieAdapter extends RecyclerView.Adapter<MovieAdapter.MovieViewHol
             movie_LBL_year = itemView.findViewById(R.id.movie_LBL_year);
             movie_LBL_title = itemView.findViewById(R.id.movie_LBL_title);
             movie_IMG_poster = itemView.findViewById(R.id.movie_IMG_poster);
+            movie_IMG_favorite.setOnClickListener(v -> {
+                if (movieCallback != null)
+                    movieCallback.favoriteClicked(getItem(getAdapterPosition()), getAdapterPosition());
+            });
+            itemView.setOnClickListener(v -> {
+                if (movieCallback != null)
+                    movieCallback.itemClicked(getItem(getAdapterPosition()), getAdapterPosition());
+            });
         }
     }
 }
