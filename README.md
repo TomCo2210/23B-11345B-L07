@@ -3,6 +3,5 @@
 * RecyclerView
 * Adapter
 * Design
-
-## Need to finish: 
-* Callbacks on Movie Item and FavoriteIV
+* Callbacks
+* Icons
